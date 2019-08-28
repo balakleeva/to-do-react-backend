@@ -1,4 +1,5 @@
 const TodoModel = require('../database/models/todo_model');
+const UserModel = require('../database/models/user_model')
 
 exports.allTodos = function (req, res) {
     TodoModel.find({}, (error, todos) => {
@@ -16,19 +17,22 @@ exports.allTodos = function (req, res) {
 
 exports.addTodo = function (req, res) {
     const data = req.body;
+    UserModel.find({username: data.username}).exec().then(user => {
 
-    const todo = new TodoModel({
-        text: data.text,
-        isDone: false,
-    });
-
-    todo.save()
-        .then(() => {
-            res.status(200).json(todo)
-            console.log('SAVED!!!')
-        }).catch((err) => {
-        res.status(500).send(err)
-    });
+    })
+    //
+    // const todo = new TodoModel({
+    //     text: data.text,
+    //     isDone: false,
+    // });
+    //
+    // todo.save()
+    //     .then(() => {
+    //         res.status(200).json(todo)
+    //         console.log('SAVED!!!')
+    //     }).catch((err) => {
+    //     res.status(500).send(err)
+    // });
 };
 
 exports.changeDone = function (req, res) {

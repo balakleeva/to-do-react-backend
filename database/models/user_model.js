@@ -1,6 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// const TodoSchema = new Schema({
+//         text: {
+//             type: String,
+//             required: true,
+//             trim: true,
+//         },
+//         isDone: {
+//             type: Boolean,
+//             required: true
+//         },
+//
+//     }, {
+//         timestamps: true
+//     }
+// );
+
+const TodoSchema = require('./todo_model')
+
 const userSchema = new Schema({
         name: {
             type: String,
@@ -19,6 +37,7 @@ const userSchema = new Schema({
             required: true,
             type: String
         },
+        todos: [TodoSchema],
     }, {
         timestamps: true
     }

@@ -28,6 +28,7 @@ exports.userLogin = function (req, res) {
                 isLogin: true,
                 token: token,
                 userData: {
+                    id: user[0].id,
                     name: user[0].name,
                     username: user[0].username,
                     email: user[0].email,
@@ -81,3 +82,11 @@ exports.addUser = function (req, res) {
         res.status(500).send(err)
     });
 };
+
+exports.addTodo = function (req, res) {
+    console.log('request', req)
+    const username = req.body
+    UserModel.find(username).exec().then((user) => {
+        user.todos.push(req.body)
+    })
+}
