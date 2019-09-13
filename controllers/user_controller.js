@@ -21,7 +21,7 @@ exports.userLogin = function (req, res) {
                     email: user[0].email,
                 },
                 'secretKey', {
-                    expiresIn: "1h",
+                    expiresIn: '1h',
                 })
 
             res.status(200).json({
@@ -83,10 +83,3 @@ exports.addUser = function (req, res) {
     });
 };
 
-exports.addTodo = function (req, res) {
-    console.log('request', req)
-    const username = req.body
-    UserModel.find(username).exec().then((user) => {
-        user.todos.push(req.body)
-    })
-}
